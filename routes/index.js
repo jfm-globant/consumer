@@ -72,5 +72,14 @@ router.get('/findlistannotations', function(req, res, next) {
   })
 });
 
+router.get('/findannotabledoc', function(req, res, next) {
+  model.consumer.findannotabledoc(req, (error, data)=>{
+    if(error){
+      if(error.message === 'not found') next()
+      else next(error)
+    }  else res.send(data)
+  })
+});
+
 
 module.exports = router;
