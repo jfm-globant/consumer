@@ -50,14 +50,15 @@ function consumerModel(){
 
 
     function health(req, cb){
-        if(req.query.env = 'local') EndPoint = "http://localhost:3000/engine/health"
-        else {if(req.query.env = 'dev') EndPoint = "https://digital.dev.greatminds.dev/annotations/api/health"
-                else {
+        if(req.query.env === 'local')  EndPoint = "http://localhost:3000/engine/health"
+        else {
+            if(req.query.env === 'dev') EndPoint = "https://digital.dev.greatminds.dev/annotations/api/health"
+            else {
                     setImmediate(()=>{
-                        cb({error : "Unsupported environment"}, result.status)
+                        cb("Unsupported environment", null)
                     })          
                     return          
-                }
+            }
         }
         axios.get(EndPoint).then((result)=>{
             setImmediate(()=>{
