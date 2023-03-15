@@ -16,7 +16,7 @@ router.get('/token', function(req, res, next) {
       else next(err)
     }  else res.sendStatus('token', {result: data})
   })
-});
+})
 
 router.get('/health', function(req, res, next) {
   model.consumer.health(req, (error, data)=>{
@@ -25,7 +25,7 @@ router.get('/health', function(req, res, next) {
       else next(error)
     }  else res.sendStatus(data)
   })
-});
+})
 
 router.get('/annotabledoc', function(req, res, next) {
   model.consumer.annotableDoc(req, (error, data)=>{
@@ -34,7 +34,7 @@ router.get('/annotabledoc', function(req, res, next) {
       else next(error)
     }  else res.send(data)
   })
-});
+})
 
 router.get('/annotations', function(req, res, next) {
   model.consumer.annotations(req, (error, data)=>{
