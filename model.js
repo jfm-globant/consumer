@@ -5,12 +5,9 @@ module.exports = {
     consumer: consumerModel()
 }
 
-function consumerModel(){
-
-                        
-
+function consumerModel(){                        
     var cookie_bridge = "s%3Awr5fJibG7QCkWPlT2ke1jUv2OyCnY0oF.vOXMi0v05nGdvdr09R3igPtoFg%2B7QRnSPsNYs8NsQlA"
-    var cookie_user = "eyJraWQiOiIycmg1bDVvdUs2SGw4YmlWK1lPeUtDVkRIdm5wSVA1ZmRvajIwazBNMDRNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIyMWEwZWZmMS1lN2UzLTRmY2QtODlmZi04ZWQxNTNhZGRmZDciLCJjb2duaXRvOmdyb3VwcyI6WyJ0ZWFjaGVyIl0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1hkNGlLaEp5diIsImNsaWVudF9pZCI6IjUxcDhkdmRtdW5rNjhoNTdiazFmYTlnMWdtIiwib3JpZ2luX2p0aSI6ImExZGFhN2IwLTFhYWEtNGJiMS05Nzg1LWY2MmFjYzJmNGYxYyIsImV2ZW50X2lkIjoiZjQ5ZWQ5ZTItYTc1Zi00ZjBmLTkwODEtNTJjZmY3ZmE0OGE1IiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJhd3MuY29nbml0by5zaWduaW4udXNlci5hZG1pbiIsImF1dGhfdGltZSI6MTY3ODgyMzEwNCwiZXhwIjoxNjc4ODk2NTYyLCJpYXQiOjE2Nzg4OTI5NjIsImp0aSI6IjA0NTg4MmVhLWUyOGYtNGUwMy1iZmM3LTUxOTcwYzhlMmI3OSIsInVzZXJuYW1lIjoiNTM5NTdiNDctNDNmZC00YWVhLWJkMTMtZmI0YWViY2FmODI1In0.AEOJJmIWWQ0bT0epRc5wfF4Z6FB3ZyzdDwbo12g89ei5Y4_MGvVICrkIRG_2ZVUoz_Zzgx_SF95iQdBMKIU7Tn5nPu5VruZ6B0gPKGaw4MTlgyWIcVrZCZ1a_Z6_UlYIpXpx22xVIKIaE1sYDgZXmKuHv-A5JhTFPpqGfD7_0UR9VGS7li2zTRpkFGBKHzoDzepX1djb_cgrOkAc0nQHvWmyEcodnLHTOBgSXFpWCoukpKTcAKcZIMsKHlL8asYLS-WccjdKagtLUHP4BAqxtt__pnOTgN02ZZ_JUSLDS4ShA0X5gf8wWv8J30dX3o8yBME_uY_rNujqX8ygTnVKHQ"
+    var cookie_user = "eyJraWQiOiIycmg1bDVvdUs2SGw4YmlWK1lPeUtDVkRIdm5wSVA1ZmRvajIwazBNMDRNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIyMWEwZWZmMS1lN2UzLTRmY2QtODlmZi04ZWQxNTNhZGRmZDciLCJjb2duaXRvOmdyb3VwcyI6WyJ0ZWFjaGVyIl0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1hkNGlLaEp5diIsImNsaWVudF9pZCI6IjUxcDhkdmRtdW5rNjhoNTdiazFmYTlnMWdtIiwib3JpZ2luX2p0aSI6ImExZGFhN2IwLTFhYWEtNGJiMS05Nzg1LWY2MmFjYzJmNGYxYyIsImV2ZW50X2lkIjoiZjQ5ZWQ5ZTItYTc1Zi00ZjBmLTkwODEtNTJjZmY3ZmE0OGE1IiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJhd3MuY29nbml0by5zaWduaW4udXNlci5hZG1pbiIsImF1dGhfdGltZSI6MTY3ODgyMzEwNCwiZXhwIjoxNjc4OTAxMDg1LCJpYXQiOjE2Nzg4OTc0ODUsImp0aSI6IjkxNTU4ODIwLWY4MmItNDYwZi1iMTg1LWNlNGI4NDg3Njk2YiIsInVzZXJuYW1lIjoiNTM5NTdiNDctNDNmZC00YWVhLWJkMTMtZmI0YWViY2FmODI1In0.N7Ux4SiLqSuRdzufHqEaiWDY6nVomum6A1fYJtSsrYLdY9ScrfnD7wora7IMSI8xhkSb7Cs9QYst9K4YlASS_OjpXnLKq7rz8OKn-Zc3ZQPnglqYB5UGfvFUUbka2LFNlyjhg_YieUVv3KhTc0y7xjgMKD01hrG4c8SSvza1sRX09dHR8GuCgzlfLm3YG7Yh88mAq8S6LitUF7dX9MSbWbVyri4WURQ9UDvHPNVhntT978TQOegVCk6GiCcMJIxfLqWRC0YMIvWpc8XQeHSqZWt-AvyjxHNEgkQFFnhOFIwL6CpkwiqvfboHarIQBn3WBELfivfshLWrpuVrfLnSDA"
     var Newpayload = `{
         "metadata": {
           "resolution": "1920x1080",
@@ -138,6 +135,7 @@ function consumerModel(){
                 Cookie : `greatminds.lti-bridge=${cookie_bridge}; active_role=teacher; user=${cookie_user};`
             }  // Request failed with status code 403 : Forbidden resource  
         }).then((data)=>{
+            console.log(data)
             setImmediate(()=>{
                 cb(null, data.statusText)
             })
@@ -167,6 +165,9 @@ function consumerModel(){
                 cb(null, data.data)
             })
         }).catch((err)=>{
+
+            console.log(err.response.data.errors)
+
             setImmediate(()=>{
                 cb('Status ' + err , null)                   
             })
