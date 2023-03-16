@@ -5,10 +5,26 @@ module.exports = {
     consumer: consumerModel()
 }
 
-function consumerModel(){                        
-    var cookie_bridge = "s%3Awr5fJibG7QCkWPlT2ke1jUv2OyCnY0oF.vOXMi0v05nGdvdr09R3igPtoFg%2B7QRnSPsNYs8NsQlA"
-    var cookie_user = "eyJraWQiOiIycmg1bDVvdUs2SGw4YmlWK1lPeUtDVkRIdm5wSVA1ZmRvajIwazBNMDRNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIyMWEwZWZmMS1lN2UzLTRmY2QtODlmZi04ZWQxNTNhZGRmZDciLCJjb2duaXRvOmdyb3VwcyI6WyJ0ZWFjaGVyIl0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1hkNGlLaEp5diIsImNsaWVudF9pZCI6IjUxcDhkdmRtdW5rNjhoNTdiazFmYTlnMWdtIiwib3JpZ2luX2p0aSI6ImExZGFhN2IwLTFhYWEtNGJiMS05Nzg1LWY2MmFjYzJmNGYxYyIsImV2ZW50X2lkIjoiZjQ5ZWQ5ZTItYTc1Zi00ZjBmLTkwODEtNTJjZmY3ZmE0OGE1IiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJhd3MuY29nbml0by5zaWduaW4udXNlci5hZG1pbiIsImF1dGhfdGltZSI6MTY3ODgyMzEwNCwiZXhwIjoxNjc4OTEzOTg1LCJpYXQiOjE2Nzg5MTAzODUsImp0aSI6ImJhNDkyMzVmLTY1MmUtNGQxOC1hYmFkLWYxYTUxNTliMTYzZSIsInVzZXJuYW1lIjoiNTM5NTdiNDctNDNmZC00YWVhLWJkMTMtZmI0YWViY2FmODI1In0.l80o4SoJL5BysMGgRoUd-oCZ4b73H4tj-4Ki170R1r1EhGsI5aIULtsegk1A3vKai9rhcx65Qos_En0VcRy7Af70in-IAjY1uyDaNnUt2ZgFPRbC10BqvUh3FYSSVYy_EgBYyHIw_ddPHqkQCB1uUPzPDCYubWzoK2W2NlcuAFZGY3NAuLSJZeNrhMV0X-hgkcPjv6oL3BsCDBXH_ZPHvcgjfx4iHB0phfm-5OimF-wX2tyUTL02pRDmfDS4P-0FAf2Zu11mSq2cxLO4QEOBY1waw15tgaHr_jO1K6-1D141xLwxysiEaZfdM3AIsTkaikyZhqcfONw1dn6LzsxoZA"
-    var EndPoint = ""
+function setEnv(reqEnv){
+    switch(reqEnv){
+        case 'local':
+            EndPoint = "http://localhost:3000/engine"
+            break
+        case 'dev':
+            EndPoint = "https://digital.dev.greatminds.dev/annotations/api"
+            break
+        default :
+            EndPoint = "none"
+    }
+    return EndPoint
+}
+
+function consumerModel(){           
+    // First set this values before to consume enpoints:             
+    var cookie_bridge = "s%3AhjssdMgK6wYB5pITs_Ka6UFxe5hxsNSc.RC6HiuABCNTIAlWcLI189T77NRQeX9qu8bC5%2FPZRlZI"
+    var cookie_user = "eyJraWQiOiJzREoxS1RyNzMrSUxoMmc1YnZuYWZVbnVyS0V1Z0QxRWZ4WW5DXC85WVlIbz0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJjMGE2MjhjNi03MDRlLTQ4M2QtODNkNC05YWVkMGRjMmE0YWUiLCJjb2duaXRvOmdyb3VwcyI6WyJ0ZWFjaGVyIl0sImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1hhd3N1UFNiNSIsImNsaWVudF9pZCI6IjM4cDVwbW12YjE4MmlsZ2R0c252b2VvZGRsIiwib3JpZ2luX2p0aSI6ImYzMWFjOWRkLTBkOGYtNDk4OC05YTZhLTc0M2JjMzJjY2FmOSIsImV2ZW50X2lkIjoiZTVlNmMzMGYtYzI2MS00N2UxLWFmMzUtNDc2OWI3OWEyMTM5IiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJhd3MuY29nbml0by5zaWduaW4udXNlci5hZG1pbiIsImF1dGhfdGltZSI6MTY3ODk4MTQ3MCwiZXhwIjoxNjc4OTg1MDY5LCJpYXQiOjE2Nzg5ODE0NzAsImp0aSI6IjUyN2I5OWE3LTIyY2QtNGE0Ny05MjMzLTY5MTE5ZmRlNjNiNiIsInVzZXJuYW1lIjoiYjgwZmU2YzUtMDUwYy00YjBhLTlhYTctNmVkZjdiYmRjOTAyIn0.C54Up9GBiaDeTOaJ7n7gSFrLafLBGnsOPpUR9nz3BB3p-UD8Xu7eBNQHkN8PTeKNehX0isxncgu1Rv9DiD3E7csqjRuujNHhZQfT9Z7kCoRBHV6YTfXvmazx_3GQ1jUl4n5DEveGyPA-pehkfKwXrhocqrE8LzZ_YIob5cy3hzsF_h9xIdaI74lt4jPrTisbpwbAFP1oZ6Ty6T6zNhuxVx-zF6GysLxMscIE4VNlc-KWkek3du_VNAldZPLT8KZG8h55dA2e5qXkYwRX7mFq8JE0Ru4u9klwtx-4JLgttU42Iq4yezkUGd085VaOdqoitEP9YVxIikxM3Cbo3XdT5Q"
+    var enrollPeriod = "ade51b25-1279-4af5-90ff-9db25a0f84d8" // = This is Dev, for local use: 6bcd224b-ac93-4f43-beed-c4f346a808b9
+    // **
     var Newpayload = `{
         "metadata": {
           "resolution": "1920x1080",
@@ -50,17 +66,14 @@ function consumerModel(){
 
 
     function health(req, cb){
-        if(req.query.env === 'local')  EndPoint = "http://localhost:3000/engine/health"
-        else {
-            if(req.query.env === 'dev') EndPoint = "https://digital.dev.greatminds.dev/annotations/api/health"
-            else {
-                    setImmediate(()=>{
-                        cb("Unsupported environment", null)
-                    })          
-                    return          
-            }
+        var EndPoint = setEnv(req.query.env)
+        if(EndPoint === "none"){
+            setImmediate(()=>{
+                cb("Unsupported environment", null)
+            })          
+            return      
         }
-        axios.get(EndPoint).then((result)=>{
+        axios.get(`${EndPoint}/health`).then((result)=>{
             setImmediate(()=>{
                 cb(null, result.status)
             })
@@ -72,7 +85,7 @@ function consumerModel(){
     }
 
 
-    function tocken(req, cb){
+    function tocken(req, cb){  //  ** I develop, not available yet.
         axios.post('https://ap3liyhe0i.execute-api.us-east-1.amazonaws.com/v1/auth/i/passwordless').then((result)=>{
             setImmediate(()=>{
                 cb(null, result)
@@ -82,21 +95,29 @@ function consumerModel(){
 
 
     function annotations(req, cb){
-        axios.post('http://localhost:3000/engine/annotations',
+        var EndPoint = setEnv(req.query.env)
+        if(EndPoint === "none"){
+            setImmediate(()=>{
+                cb("Unsupported environment", null)
+            })          
+            return      
+        }
+        axios.post(`${EndPoint}/annotations`,
         {
                 "annotations": [
                   {
                     "annotationContent": `hi! This is the new payload: ${Newpayload} `,
-                    "annotableDocumentId": "5f5e4d7a-df1f-4c3f-8509-470c7fa12983" //"fe2920fe-2033-458a-81a3-e7baa6439ca5"
+                    "annotableDocumentId": "590e95d0-d8c8-4fc3-b24c-fc436505d278" // = Dev, In local "5f5e4d7a-df1f-4c3f-8509-470c7fa12983" //"fe2920fe-2033-458a-81a3-e7baa6439ca5"
                   }
                 ]           
         }, {
             headers : {
                 "gm-platform" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybSI6eyJpZCI6ImRpZ2l0YWwifX0.qjL312eo8te1ZTx0ADkpryf0QQU_k8kdcBpjI2vsc6c",
-                "enrollment-period" : "6bcd224b-ac93-4f43-beed-c4f346a808b9",  // from Fetch/XHR
+                "enrollment-period" : enrollPeriod,  // Obtain from Fetch/XHR in browser
                 Cookie : `greatminds.lti-bridge=${cookie_bridge}; active_role=teacher; user=${cookie_user};`
             }
         }).then((response)=>{
+            console.log(response.data)
             setImmediate(()=>{
                 cb(null, "Record Save.")
             })
@@ -109,7 +130,14 @@ function consumerModel(){
 
 
     function annotableDoc(req, cb){
-        axios.post('http://localhost:3000/engine/annotableDocuments.save',  {
+        var EndPoint = setEnv(req.query.env)
+        if(EndPoint === "none"){
+            setImmediate(()=>{
+                cb("Unsupported environment", null)
+            })
+            return      
+        }
+        axios.post(`${EndPoint}/annotableDocuments.save`,  {
                 "annotableDocuments":  [
                     {          
                         ownerId: "42279ea6-bd17-490c-86bd-a9910c3d48a8", // Postman Autho
@@ -121,14 +149,16 @@ function consumerModel(){
         }, {
             headers : {
                 "gm-platform" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybSI6eyJpZCI6ImRpZ2l0YWwifX0.qjL312eo8te1ZTx0ADkpryf0QQU_k8kdcBpjI2vsc6c",
-                "enrollment-period" : "6bcd224b-ac93-4f43-beed-c4f346a808b9",  // from Fetch/XHR
+                "enrollment-period" : enrollPeriod,  // from Fetch/XHR
                 Cookie : `greatminds.lti-bridge=${cookie_bridge}; active_role=teacher; user=${cookie_user};`
             }
         }).then((data)=>{
+            console.log(data.data)
             setImmediate(()=>{
                 cb(null, data.statusText)
             })
         }).catch((err)=>{
+            console.log(err)
             setImmediate(()=>{
                 cb('Status ' + err + ' : ' + err.response.data.errors[0].details.message, null)
             })
@@ -165,7 +195,7 @@ function consumerModel(){
             },
             headers : {
                 "gm-platform" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybSI6eyJpZCI6ImRpZ2l0YWwifX0.qjL312eo8te1ZTx0ADkpryf0QQU_k8kdcBpjI2vsc6c",
-                "enrollment-period" : "6bcd224b-ac93-4f43-beed-c4f346a808b9",  // from Fetch/XHR
+                "enrollment-period" : "6bcd224b-ac93-4f43-beed-c4f346a808b9",  // from Fetch/XHR                                   
                 Cookie : `greatminds.lti-bridge=${cookie_bridge}; active_role=teacher; user=${cookie_user};`
             }
         }).then((data)=>{
