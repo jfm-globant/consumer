@@ -241,13 +241,20 @@ function consumerModel(){
 
     
     function findannotabledoc(req, cb){
-        axios.get('http://localhost:3000/engine/annotations.findByAnnotableDocument', {
+        var EndPoint = setEnv(req.query.env)
+        if(EndPoint === "none"){
+            setImmediate(()=>{
+                cb("Unsupported environment", null)
+            })
+            return      
+        }
+        axios.get(`${EndPoint}/annotations.findByAnnotableDocument`, {
             params:{
                 "documentId": "5f5e4d7a-df1f-4c3f-8509-470c7fa12983"
             },
             headers : {
                 "gm-platform" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybSI6eyJpZCI6ImRpZ2l0YWwifX0.qjL312eo8te1ZTx0ADkpryf0QQU_k8kdcBpjI2vsc6c",
-                "enrollment-period" : "6bcd224b-ac93-4f43-beed-c4f346a808b9",  // from Fetch/XHR
+                "enrollment-period" : enrollPeriod,  // from Fetch/XHR
                 Cookie : `greatminds.lti-bridge=${cookie_bridge}; active_role=teacher; user=${cookie_user};`
             }  
         }).then((data)=>{
